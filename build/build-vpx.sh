@@ -29,7 +29,7 @@ download_code () {
   cd "$2/${SOFTWARE}"
   checkStatus $? "change directory failed"
   # download source
-  git clone https://chromium.googlesource.com/webm/libvpx
+  git clone -b v1.15.0 --depth 1 https://chromium.googlesource.com/webm/libvpx
   checkStatus $? "download of ${SOFTWARE} failed"
   cd "libvpx/"
   checkStatus $? "change directory failed"

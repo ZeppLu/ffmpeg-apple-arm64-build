@@ -27,7 +27,7 @@ download_code () {
   cd "$2/${SOFTWARE}"
   checkStatus $? "change directory failed"
   # download source
-  git clone --depth 1 ${GIT_REPO}
+  git clone -b v1.5.4 --depth 1 ${GIT_REPO}
   checkStatus $? "download of ${SOFTWARE} failed"
 
 }

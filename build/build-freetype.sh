@@ -28,7 +28,7 @@ download_code () {
   checkStatus $? "change directory failed"
   # download source
 #  git clone https://gitlab.freedesktop.org/freetype/freetype.git --branch $5
-  git clone https://gitlab.freedesktop.org/freetype/freetype.git
+  git clone -b VER-2-13-3 --depth 1 https://gitlab.freedesktop.org/freetype/freetype.git
   checkStatus $? "download of ${SOFTWARE} failed"
 
 }

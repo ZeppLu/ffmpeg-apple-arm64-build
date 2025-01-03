@@ -32,7 +32,7 @@ download_code () {
   cd "$2/${SOFTWARE}"
   checkStatus $? "change directory failed"
   # download source
-  git clone ${GIT_REPO}
+  git clone -b openssl-3.3.2 --depth 1 ${GIT_REPO}
   checkStatus $? "download of ${SOFTWARE} failed"
 
 }
