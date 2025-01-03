@@ -2,6 +2,7 @@
 
 # Option feature set to FALSE if not required and TRUE if required
 ENABLE_FFPLAY=FALSE
+ENABLE_VULKAN=FALSE
 ENABLE_TOPAZ=FALSE
 ENABLE_AVISYNTHPLUS=FALSE
 BUILD_FROM_MAIN=TRUE
@@ -32,6 +33,12 @@ if [[ "${ENABLE_FFPLAY}" == "TRUE" ]]
 then
     export ENABLE_FFPLAY=TRUE
 fi
+
+if [[ "${ENABLE_VULKAN}" == "TRUE" ]]
+then
+    export ENABLE_VULKAN=TRUE
+fi
+
 
 if [[ "${ENABLE_AVISYNTHPLUS}" == "TRUE" ]]
 then

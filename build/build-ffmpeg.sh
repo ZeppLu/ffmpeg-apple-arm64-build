@@ -62,10 +62,20 @@ configure_build () {
   export CFLAGS="$FF_FLAGS"
 
   FFMPEG_EXTRAS=''
-  
+
   if [[ "${ENABLE_FFPLAY}" == "TRUE" ]]
   then
        FFMPEG_EXTRAS="${FFMPEG_EXTRAS} --enable-sdl2"
+  fi
+
+  if [[ "${ENABLE_VULKAN}" == "TRUE" ]]
+  then
+    # temp: use system libplacebo/vulkan
+    # you also need to `install_name_tool -add_rpath /opt/homebrew/lib out/bin/ffxxx` to make vulkan work
+    for pkg in libplacebo vulkan-loader shaderc little-cms2; do
+      export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(brew --prefix $pkg)/lib/pkgconfig"
+    done
+    FFMPEG_EXTRAS="${FFMPEG_EXTRAS} --enable-vulkan --enable-libplacebo"
   fi
 
   if [[ "${ENABLE_AVISYNTHPLUS}" == "TRUE" ]]
