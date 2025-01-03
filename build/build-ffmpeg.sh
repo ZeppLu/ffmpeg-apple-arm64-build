@@ -115,15 +115,24 @@ make_compile () {
 build_main () {
 
 
-  # ffmpeg we always want to rebuild
+  # ffmpeg we always want to reconfigure & rebuild
 
   if [[ ! -d "$2/${SOFTWARE}" ]]
   then
     make_directories $@
     download_code $@
-    configure_build $@
+  else
+    if [[ "${BUILD_FROM_MAIN}" == "TRUE" ]]
+    then
+      export FFMPEG_DIR="ffmpeg"
+    else
+      export FFMPEG_DIR="ffmpeg-$6"
+    fi
+    cd "$2/${SOFTWARE}/${FFMPEG_DIR}/"
+    checkStatus $? "change directory failed"
   fi
 
+  configure_build $@
   make_clean $@
   make_compile $@
 
